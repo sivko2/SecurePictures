@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<!--
+
+   Copyright (c) 2011-2014 BlackBerry Limited.
+
+   Licensed under the Apache License, Version 2.0 (the "License");
+   you may not use this file except in compliance with the License.
+   You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+   Unless required by applicable law or agreed to in writing, software
+   distributed under the License is distributed on an "AS IS" BASIS,
+   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+   See the License for the specific language governing permissions and
+   limitations under the License.
+
+-->
+<qnx xmlns="http://www.qnx.com/schemas/application/1.0">
+
+<!-- BlackBerry 10 application descriptor file.
+
+    Specifies parameters for identifying, installing, and launching native applications on BlackBerry 10.
+
+-->
+
+    <!-- A universally unique application identifier. Must be unique across all BlackBerry 10 applications.
+         Using a reverse DNS-style name as the id is recommended. (Eg. com.example.ExampleApplication.) Required. -->
+    <id>si.pronic.PBPictureProtector</id>
+    <configuration name="Device-Debug">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="arm/o.le-v7-g/PBPictureProtector" entry="true" type="Qnx/Elf">PBPictureProtector</asset>
+    </configuration>
+    <configuration name="Device-Release">
+       <entryPointType>Qnx/Cascades</entryPointType>
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="arm/o.le-v7/PBPictureProtector.so" entry="true" type="Qnx/Elf">PBPictureProtector.so</asset>
+    </configuration>
+    <configuration name="Device-Profile">
+       <platformArchitecture>armle-v7</platformArchitecture>
+       <asset path="arm-p/o.le-v7-g/PBPictureProtector" entry="true" type="Qnx/Elf">PBPictureProtector</asset>
+    </configuration>
+    <configuration name="Simulator-Debug">
+       <platformArchitecture>x86</platformArchitecture>
+       <asset path="x86/o-g/PBPictureProtector" entry="true" type="Qnx/Elf">PBPictureProtector</asset>
+    </configuration>
+
+    <!-- The name that is displayed in the BlackBerry 10 application installer.
+         May have multiple values for each language. See samples or xsd schema file. Optional. -->
+    <name>Secure Pictures</name>
+
+    <!-- A string value of the format <0-999>.<0-999>.<0-999> that represents application version which can be used to check for application upgrade.
+         Values can also be 1-part or 2-part. It is not necessary to have a 3-part value.
+         An updated version of application must have a versionNumber value higher than the previous version. Required. -->
+    <versionNumber>2.1.0</versionNumber>
+
+    <!-- Fourth digit segment of the package version. First three segments are taken from the
+         <versionNumber> element.  Must be an integer from 0 to 2^16-1 -->
+    <buildId>96</buildId>
+
+    <!-- A string value (such as "v1", "2.5", or "Alpha 1") that represents the version of the application, as it should be shown to users. Optional. -->
+    <!-- <versionLabel></versionLabel> -->
+
+    <!-- Description, displayed in the BlackBerry 10 application installer.
+         May have multiple values for each language. See samples or xsd schema file. Optional. -->
+
+    <!-- Copyright information. Optional. -->
+    <!-- <copyright></copyright> -->
+
+    <!--  Name of author which is used for signing. Must match the developer name of your development certificate. -->
+    <splashScreens>
+       <image>splash720x1280.png</image>
+       <image>splash720x720.png</image>
+       <image>splash768x1280.png</image>
+       <image>splash1440x1440.png</image>
+    </splashScreens>
+    
+    <invoke-target id="si.pronic.secpictures">
+        <invoke-target-name>Secure Pictures Viewer</invoke-target-name>
+        <invoke-target-type>card.previewer</invoke-target-type>
+ 	    <icon>
+			<image>icon_small.png</image>
+	    </icon>
+    	<filter>
+            <action>bb.action.OPEN</action>
+            <mime-type>*</mime-type>
+    		<property var="uris" value="file://"/>
+      		<property var="exts" value="smp4,sjpg"/>
+        </filter>
+    </invoke-target>
+        
+    <platformVersion>10.3.0.0</platformVersion>
+    <description>Take a picture, shot a video or record an audio, and protect it using encryption.</description>
+    <authorId>gYAAgNY1wpToXrP8nrcqLslMyyk</authorId>
+    <author>Pronic</author>
+
+    <!--  Unique author ID assigned by signing authority. Required if using debug tokens. -->
+    <!-- <authorId>ABC1234YjsnUk235h</authorId> -->
+
+    <initialWindow>
+        <autoOrients>true</autoOrients>
+        <systemChrome>none</systemChrome>
+    </initialWindow>
+
+    <!--  The icon for the application, which should be 114x114. -->
+    <icon>
+        <image>icon144.png</image>
+        <image>icon90.png</image>
+        <image>icon96.png</image>
+        <image>icon.png</image>
+        <image>icon_small.png</image>
+    </icon>
+
+    <asset path="icon.png">icon.png</asset>
+    <asset path="icon_small.png">icon_small.png</asset>
+    <asset path="assets">assets</asset>
+
+    <!-- Locale support -->
+    <asset path="translations" dest="qm">
+        <include name="*.qm"/>
+    </asset>
+    <asset path="splash720x1280.png">splash720x1280.png</asset>
+    <asset path="splash720x720.png">splash720x720.png</asset>
+    <asset path="splash768x1280.png">splash768x1280.png</asset>
+    <asset path="splash1440x1440.png">splash1440x1440.png</asset>
+    <asset path="icon144.png">icon144.png</asset>
+    <asset path="icon90.png">icon90.png</asset>
+    <asset path="icon96.png">icon96.png</asset>
+
+    <!-- Request permission to execute native code.  Required for native applications. -->
+    <permission system="true">run_native</permission>
+    <permission>use_camera</permission>
+    <permission>access_shared</permission>
+    <permission>record_audio</permission>
+    <permission>run_when_backgrounded</permission>
+    <permission>access_internet</permission>
+    <env var="LD_LIBRARY_PATH" value="app/native/lib:/usr/lib/qt4/lib"/>
+    <env var="CASCADES_THEME" value="bright?primaryColor=0xC32C2B&amp;primaryBase=0xB31C1B"/>
+
+</qnx>
